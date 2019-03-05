@@ -1,0 +1,9 @@
+:host{
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    & .pogPopup{
+        background-color: red;
+    }
+}
