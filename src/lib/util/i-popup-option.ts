@@ -1,20 +1,18 @@
 import { PopupStateCommand } from './a-popup-control-item';
 import { ViewRef } from '@angular/core';
 
-export interface IPopupOption{
-    
-}
+
 
 export class ModalData{
 
     component: any;
-    option: IPopupOption;
+    option: any;
     command: PopupStateCommand;
     view: ViewRef;
     /**
      *
      */
-    constructor(trg:any, opt:IPopupOption, cmd:PopupStateCommand
+    constructor(trg:any, opt:any, cmd:PopupStateCommand
     ) {
         this.component=trg;
         this.option=opt;

@@ -1,9 +1,29 @@
 :host{
     display: block;
-    position: absolute;
-    width: 0;
-    height: 0;
+    position: fixed;
+    top:1ex;
+    right:0;
+
+    & .pogPopup, .pogNotify{
+        background-color: #fff;        
+        right: 0;
+        display: block;
+    }
+
     & .pogPopup{
-        background-color: red;
+        position: fixed;
+    }
+    & .pogNotify{
+        border:1px solid #aeaeae;
+        padding-top:1ex;
+        padding-bottom: 1ex;
+        padding-left:3ex;
+        padding-right: 1ex;
+        width: 15em;        
+    }    
+}
+.pogNotify{
+    &~&{
+        margin-top:1ex;
     }
 }

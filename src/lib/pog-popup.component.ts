@@ -31,6 +31,10 @@ export class PogPopupComponent implements OnInit {
         let componentRef=factory.create(this.entry.parentInjector);
 
         //option
+        for(let key in modalData.option){
+          componentRef.instance[key]=modalData.option[key];          
+        }
+
         //modalData handler
         componentRef.instance["modalData"] = modalData;  
 
