@@ -7,6 +7,15 @@ import { ABasePopupComponent } from '../../util/a-base-popup-component';
   styleUrls: ['./notify-item.component.css']
 })
 export class NotifyItemComponent extends ABasePopupComponent implements OnInit {
+  public pullData() {
+    
+  }
+
+  public onInit_ext() {
+    window.setTimeout(()=>{
+      this.close();
+    },this.delay);
+  }
 
   @HostListener("click")
   closeByClick(){
@@ -20,11 +29,4 @@ export class NotifyItemComponent extends ABasePopupComponent implements OnInit {
   @Input() message:string="";
   @Input() delay:number=1000;
   
-
-  ngOnInit() {
-    window.setTimeout(()=>{
-      this.close();
-    },this.delay);
-  }
-
 }

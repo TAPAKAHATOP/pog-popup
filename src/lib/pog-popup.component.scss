@@ -11,7 +11,13 @@
     }
 
     & .pogPopup{
+        border:1px solid #aeaeae;
+        display: flex;
         position: fixed;
+        left: 50%;
+        top:30%;
+        transform: translate(-50%);
+
     }
     & .pogNotify{
         border:1px solid #aeaeae;

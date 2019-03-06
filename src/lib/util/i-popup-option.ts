@@ -1,5 +1,6 @@
 import { PopupStateCommand } from './a-popup-control-item';
 import { ViewRef } from '@angular/core';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 
 
@@ -18,4 +19,8 @@ export class ModalData{
         this.option=opt;
         this.command=cmd;
     }
+
+
+    data:Observable<any>=new Observable<any>();
+    control:BehaviorSubject<PopupStateCommand>=new BehaviorSubject<PopupStateCommand>(PopupStateCommand.NOTHING);
 }

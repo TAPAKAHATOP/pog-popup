@@ -5,7 +5,7 @@ import { PogPopupService } from './pog-popup.service';
   selector: 'pog-popup',
   templateUrl: './pog-popup.component.html',
   styleUrls: ['./pog-popup.component.scss'],
-  encapsulation: ViewEncapsulation.Native
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class PogPopupComponent implements OnInit {
 
@@ -34,15 +34,14 @@ export class PogPopupComponent implements OnInit {
         for(let key in modalData.option){
           componentRef.instance[key]=modalData.option[key];          
         }
+        
 
         //modalData handler
         componentRef.instance["modalData"] = modalData;  
 
 
         modalData.view=componentRef.hostView;
-        let q=this.entry.insert(modalData.view);
-
-        
+        let q=this.entry.insert(modalData.view);        
       }
     });
   }
