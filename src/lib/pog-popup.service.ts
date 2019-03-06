@@ -51,7 +51,7 @@ export class PogPopupService {
     this.closePipe.next(view);
   }
 
-  public showNotify(msg: string, className?:string): any {
+  public showNotify(msg: string, className?:string, delay?:number): any {
     
     let option:any={
       class:this.notifyClassName,
@@ -62,6 +62,9 @@ export class PogPopupService {
     };
     if(className){
       option.class=className;
+    }
+    if(delay && delay>0){
+      option.delay=delay;
     }
     let mData=new ModalData(NotifyItemComponent, option, PopupStateCommand.SHOW);
     this.modalPipe.next(mData);

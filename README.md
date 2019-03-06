@@ -1,24 +1,67 @@
 # PogPopup
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
+Library wit toast and popup finctionality.
 
-## Code scaffolding
+## Usage
 
-Run `ng generate component component-name --project pog-popup` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project pog-popup`.
-> Note: Don't forget to add `--project pog-popup` or else it will be added to the default project in your `angular.json` file. 
+#### Prepare
 
-## Build
+After package install
 
-Run `ng build pog-popup` to build the project. The build artifacts will be stored in the `dist/` directory.
+~~~TS
+import { PogPopupModule } from 'pog-popup';
 
-## Publishing
+@NgModule({
+    ...
+    imports: [
+        ...
+        PogPopupModule
+        ...
+    ]
+    ...
+});
+~~~
 
-After building your library with `ng build pog-popup`, go to the dist folder `cd dist/pog-popup` and run `npm publish`.
+Also add components that you will use as modal
+~~~TS
+import { PogPopupModule } from 'pog-popup';
 
-## Running unit tests
+@NgModule({
+    ...
+    entryComponents:[
+        TestModalComponent
+    ]
+    ...
+});
+~~~
 
-Run `ng test pog-popup` to execute the unit tests via [Karma](https://karma-runner.github.io).
+#### Action
 
-## Further help
+~~~TS
+import { TestModalComponent } from "./test-modal-component.ts";
+import { PogPopupService } from 'pog-popup';
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+export class SampleClassOrComponent{
+
+    constructor(
+        private popupService:PogPopupService
+    ){}
+
+    public toastSample(){
+        this.modalService.showNotify("Alert message", "popup-alert",10000);
+    }
+
+    private fromModalData:any=null;
+
+    public modalSample(){
+        let modalData=this.modalService.showModal(
+            TestModalComponent,
+            {}, //options for component
+            PopupStateCommand.SHOW);
+        modalData.data.subscribe(data=>{
+            this.fromModalData=data;
+            modalData.sendCommandToModal(PopupStateCommand.CLOSE);
+        });
+    }
+}
+~~~

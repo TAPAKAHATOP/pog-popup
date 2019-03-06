@@ -1,14 +1,15 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ViewEncapsulation, HostBinding } from '@angular/core';
 import { PogPopupService } from './pog-popup.service';
 
 @Component({
   selector: 'pog-popup',
   templateUrl: './pog-popup.component.html',
   styleUrls: ['./pog-popup.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
+  encapsulation: ViewEncapsulation.None
 })
 export class PogPopupComponent implements OnInit {
 
+  @HostBinding("class")hostClass="pogPopupPanel";
   constructor(
     private service: PogPopupService,
     private resolver: ComponentFactoryResolver

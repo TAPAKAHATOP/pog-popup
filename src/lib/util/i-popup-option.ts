@@ -23,4 +23,7 @@ export class ModalData{
 
     data:Observable<any>=new Observable<any>();
     control:BehaviorSubject<PopupStateCommand>=new BehaviorSubject<PopupStateCommand>(PopupStateCommand.NOTHING);
+    public sendCommandToModal(cmd:PopupStateCommand){
+        this.control.next(cmd);
+    }
 }
