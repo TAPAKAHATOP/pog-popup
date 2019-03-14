@@ -1,4 +1,5 @@
 export enum POG_POPUP_TYPE{
-    MODAL=1,
+    EMBEDDED_MODAL=1,
+    MODAL,
     NOTIFY
 }
