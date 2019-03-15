@@ -1,6 +1,6 @@
 # PogPopup
 
-Library wit toast and popup finctionality.
+Library with toast and popup functionality.
 
 ## Usage
 
@@ -37,6 +37,9 @@ import { PogPopupModule } from 'pog-popup';
 
 #### Action
 
+##### Notify
+Import `PogPopupService` to component and use it for displaying toast messages
+
 ~~~TS
 import { TestModalComponent } from "./test-modal-component.ts";
 import { PogPopupService } from 'pog-popup';
@@ -52,7 +55,30 @@ export class SampleClassOrComponent{
     }
 
     private fromModalData:any=null;
+}
 
+~~~
+[Live example](https://stackblitz.com/edit/pop-popup?embed=1&file=src/app/toast.component.ts)
+
+
+##### Modal
+Import `PogPopupService` to component and use it for displaying your
+
+~~~TS
+export class SampleClassOrComponent{
+
+    constructor(
+        private popupService:PogPopupService
+    ){}
+
+    public modalSample(){
+        this.modalService.
+    }
+
+    private fromModalData:any=null;
+}
+
+let options:IPogPopupOption
     public modalSample(){
         let modalData=this.modalService.showModal(
             TestModalComponent,
@@ -64,4 +90,6 @@ export class SampleClassOrComponent{
         });
     }
 }
+
 ~~~
+[Live example](https://stackblitz.com/edit/pop-popup?embed=1&file=src/app/modal.component.ts)
