@@ -13,12 +13,20 @@
 
     &Popup{
         border:1px solid #aeaeae;
-        display: flex;
         position: fixed;
         left: 50%;
         top:30%;
         transform: translate(-50%);
-
+       &Layout{
+           content:"";
+           position: fixed;
+           z-index: -1;
+           top:0;
+           bottom:0;
+           left:0;
+           right: 0;
+           background-color: rgba(0,0,0,0.5);
+       }
     }
     &Notify{
         border:1px solid #aeaeae;

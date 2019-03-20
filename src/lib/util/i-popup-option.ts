@@ -14,6 +14,7 @@ export interface IPopupOption{
     message?:string;
     delay?:number;
     title?:string;
+    showPopupLayout?:boolean
 }
 
 export class ModalData{

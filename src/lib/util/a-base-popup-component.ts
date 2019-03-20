@@ -1,12 +1,14 @@
 import { ModalData } from './i-popup-option';
 import { PogPopupService } from '../pog-popup.service';
-import { HostBinding, OnInit } from '@angular/core';
+import { HostBinding, OnInit, OnDestroy } from '@angular/core';
 import { POG_POPUP_TYPE } from './enums';
 import { PopupStateCommand } from './a-popup-control-item';
 
 
 
-export abstract class ABasePopupComponent  implements OnInit {
+export abstract class ABasePopupComponent  implements OnInit, OnDestroy {
+    ngOnDestroy(): void {
+    }
 
     @HostBinding('class') 
     public class:string ="empty";
@@ -20,9 +22,14 @@ export abstract class ABasePopupComponent  implements OnInit {
      */
     constructor() {}
 
-    protected close(){
+    protected close(){        
         if(this.popupService){
             this.popupService.closeModal(this.modalData.view);
+        }
+    }
+    protected closeNotify(){        
+        if(this.popupService){
+            this.popupService.closeNotify(this.modalData.view);
         }
     }
     ngOnInit() {     
@@ -30,7 +37,7 @@ export abstract class ABasePopupComponent  implements OnInit {
         this.modalData.control.subscribe((cmd:PopupStateCommand)=>{
             switch(cmd){
                 case PopupStateCommand.CLOSE:
-                this.pullData();
+                //this.pullData();
                 this.modalData.control.unsubscribe();
                 this.close();
                 break;
