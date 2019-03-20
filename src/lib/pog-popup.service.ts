@@ -18,7 +18,11 @@ export class PogPopupService {
   private popupClassName = "pogPopup";
   private notifyClassName = "pogNotify"
   private notifyDelay: number = 4000;
+  private showLayoutByDefault:boolean=true;
 
+  setShowLayoutByDefaultFlag(flag:boolean){
+    this.showLayoutByDefault=flag;
+  }
 
   public setNotifyItemClassName(name: string) {
     this.notifyClassName = name;
@@ -35,6 +39,9 @@ export class PogPopupService {
   public modalPipe: BehaviorSubject<ModalData> = new BehaviorSubject<ModalData>(null);
   public closePipe: BehaviorSubject<ViewRef> = new BehaviorSubject<ViewRef>(null);
 
+  private modalCount:number=0;
+  public modalCnt: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+
   public showModal(target: any, option?: IPopupOption, cmd?: PopupStateCommand): ModalData {
     if(!option.class){
       option.class = this.popupClassName;
@@ -42,17 +49,29 @@ export class PogPopupService {
     if (!option.type) {
       option.type = POG_POPUP_TYPE.MODAL;
     }
+    if(typeof option.showPopupLayout==='undefined' && this.showLayoutByDefault){
+      option.showPopupLayout=true;
+    }
 
     let mData = new ModalData(target, option, cmd, this);
 
+    this.modalCount++;
     this.modalPipe.next(mData);
+    this.modalCnt.next(this.modalCount);
     return mData;
   }
 
   public closeModal(view: ViewRef): any {
+    this.modalCount--;
+    if(this.modalCount<0){
+      this.modalCount=0;
+    }
+    this.closePipe.next(view);
+    this.modalCnt.next(this.modalCount);
+  }
+  public closeNotify(view: ViewRef): any {
     this.closePipe.next(view);
   }
-
   public prepareView(modalData: ModalData, viewContainer: ViewContainerRef,type?:POG_POPUP_TYPE) {
 
     if(!type){

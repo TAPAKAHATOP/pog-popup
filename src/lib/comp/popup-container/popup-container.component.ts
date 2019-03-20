@@ -18,21 +18,13 @@ export class PopupContainerComponent implements OnInit {
   public class:string="empty";
 
   close() {
-    this.popupService.closePipe.next(this.modalData.view);
+    this.popupService.closeModal(this.modalData.view);    
   }
 
   @ViewChild("embedded", { read: ViewContainerRef }) entry: ViewContainerRef;
   constructor() { }
 
   ngOnInit() {
-    /*
-    this.popupService.closePipe.subscribe(view => {
-      if (view) {
-        let q = this.entry.indexOf(view);
-        this.entry.remove(this.entry.indexOf(view));
-      }
-    });
-*/
     this.modalData.option.class="";
 
     let view = this.popupService.prepareView(this.modalData, this.entry, POG_POPUP_TYPE.MODAL).hostView

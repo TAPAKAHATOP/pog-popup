@@ -13,13 +13,13 @@ export class NotifyItemComponent extends ABasePopupComponent implements OnInit {
 
   public onInit_ext() {
     window.setTimeout(()=>{
-      this.close();
+      this.closeNotify();
     },this.delay);
   }
 
   @HostListener("click")
   closeByClick(){
-    this.close();
+    this.closeNotify();
   }
 
   constructor() {
